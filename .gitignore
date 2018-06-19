@@ -9,27 +9,62 @@ Binaries
 
 Plugins/Marketplace
 Plugins/VictoryPlugin
+Plugins/LoadingScreen
 
 
 DerivedDataCache
+Images
 .vs
 
 #Asset from Marketplace (not intend to modify)
 
-Content/AnimStarterPack
-Content/BattlegroundsScore01
+
+Content/8BitActionGameLoops
+Content/AbandonedFactory
+Content/ActionGameSoundtrack
+Content/ActionTrailerMusicPack
+Content/AdventureGameMusicPack
+Content/Animal_pack_ultra
+Content/ArchVis
+Content/BattleMusicPack
 Content/BeachShader
-Content/DangerousHorizon
-Content/LandscapeAutoMaterial
-Content/ProSoundCollection
-Content/ProSoundCollectionMONO
-Content/UltraDynamicSky
-Content/Explosions
 Content/BONUSCombatMusicTracks
+Content/CasualGameMusicPack
+Content/Collections
+Content/DangerousHorizon
+Content/DesertRallyRace
+Content/Developers
+Content/Diesel_2_5_german
+Content/EnergyHardRockMusicPack
+Content/EpicTrailerMusicPack
+Content/Explosions
+Content/FPSWeaponPackVol2
+Content/handgunaddon
+Content/IBFPSStarterPack
+Content/IndustryPropsPack
+Content/IndustryPropsPack4
+Content/LabBottles
+Content/M4_Animated
+Content/MedievalMusicPack
+Content/Metal_Shelves
+Content/MysticalGameMusicPack
+Content/OWFoodPack
+Content/Procedural_Ecosystem
 Content/ProSoundCollection_v1_3
 Content/ProSoundCollection_v1_3_MONO
-Content/Spline-RopesHosesCables
-Content/Freebie_01
+Content/RetroKitchenPack
+Content/RiverShader
+Content/RockMusicPack
+Content/SoulCave
+Content/SoulCity
+Content/SpaceAdventureMusicPack
+Content/StarterContent
+Content/SurvivalGear
+Content/UltraDynamicSky
+Content/UrbanPropsPack
+Content/WH_Construction_Set
+Content/B
+
 
 #Test Folder
 Content/TestFolder
