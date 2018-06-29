@@ -1,2 +1,5 @@
 TestServer1
 TestServer1Pass
+Villages Community Server 1
+IndustrialZone
+500
