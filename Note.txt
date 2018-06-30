@@ -1,0 +1,5 @@
+"FileProperties" 
+	{
+		 "LocalPath" "VillagesGoldEdition\\Content\\VillagesServerData\\ServerLogin.txt"
+		"Attributes" "userconfig" // this file will be modified during runtime 
+	}
