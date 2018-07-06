@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "VillagesArsenal",
+	"Description": "Heavylifter",
+	"Category": "Other",
+	"CreatedBy": "simonjames247",
+	"CreatedByURL": "https://store.steampowered.com/app/749820/Villages/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "VillagesArsenal",
+			"Type": "Developer",
+			"LoadingPhase": "Default"
+		}
+	]
+}
