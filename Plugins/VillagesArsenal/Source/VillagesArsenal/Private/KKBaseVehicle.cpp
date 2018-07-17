@@ -2,12 +2,18 @@
 
 #include "KKBaseVehicle.h"
 
+#include "KKWheelSC.h"
+
 
 // Sets default values
 AKKBaseVehicle::AKKBaseVehicle()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	MainMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MainMesh"));
+	RootComponent = MainMesh;
+	MainMesh->SetSimulatePhysics(true);
 
 }
 
@@ -30,5 +36,34 @@ void AKKBaseVehicle::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+
+	
+	if (PropertyChangedEvent.Property->IsValidLowLevel())
+	{
+		if (PropertyChangedEvent.Property->GetName() == "ForceUpdate")
+		{
+			//update vehicle setup
+			//clear WheelsArray first
+			WheelsArray.Empty();
+			TArray<UKKWheelSC*> wheelArrayRef;
+			this->GetComponents<UKKWheelSC>(wheelArrayRef);
+			for (UKKWheelSC* wheel : wheelArrayRef)
+			{
+				if (wheel->IsValidLowLevel())
+				{
+					FWheelStruct wheelStruct;
+					wheelStruct.WheelName = wheel->WheelName;
+					wheelStruct.WheelRef = wheel;
+					WheelsArray.Add(wheelStruct);
+				}
+			}
+		}
+	}
+	
 }
 

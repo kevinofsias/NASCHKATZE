@@ -4,7 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+
+#include "KKWheelSC.h"
+
 #include "KKBaseVehicle.generated.h"
+
+
+USTRUCT(BlueprintType)
+struct FWheelStruct
+{
+	GENERATED_USTRUCT_BODY()
+	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
+		FString WheelName;
+
+	UKKWheelSC* WheelRef;
+};
 
 UCLASS()
 class VILLAGESARSENAL_API AKKBaseVehicle : public APawn
@@ -26,6 +40,17 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
+	void PostEditChangeProperty(FPropertyChangedEvent &PropertyChangedEvent) override;
+
+#if WITH_EDITOR
+	UPROPERTY(EditDefaultsOnly, Category = "KKSwitch")
+		bool ForceUpdate;
+#endif
+
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		UStaticMeshComponent* MainMesh;
+
+	//UPROPERTY(VisibleDefaultsOnly, Category = "KKSetup")
+	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
+		TArray<FWheelStruct> WheelsArray;
 };
