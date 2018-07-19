@@ -8,12 +8,14 @@
 // Sets default values
 AKKBaseVehicle::AKKBaseVehicle()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	MainMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MainMesh"));
 	RootComponent = MainMesh;
 	MainMesh->SetSimulatePhysics(true);
+	MainMesh->SetLinearDamping(MainMeshLinearDamping);
+	MainMesh->SetAngularDamping(MainMeshAngularDamping);
 
 }
 
@@ -21,7 +23,7 @@ AKKBaseVehicle::AKKBaseVehicle()
 void AKKBaseVehicle::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
@@ -42,7 +44,7 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	
+
 	if (PropertyChangedEvent.Property->IsValidLowLevel())
 	{
 		if (PropertyChangedEvent.Property->GetName() == "ForceUpdate")
@@ -63,7 +65,21 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 				}
 			}
 		}
+
+		/*
+		if (PropertyChangedEvent.Property->GetName() == "MainMeshLinearDamping")
+		{
+			MainMesh->SetLinearDamping(MainMeshLinearDamping);
+		}
+
+		if (PropertyChangedEvent.Property->GetName() == "MainMeshAngularDamping")
+		{
+			MainMesh->SetAngularDamping(MainMeshAngularDamping);
+		}
+		*/
+
 	}
-	
+
+
 }
 

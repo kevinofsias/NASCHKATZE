@@ -2,6 +2,11 @@
 
 #include "KKWheelSC.h"
 
+#include "DrawDebugHelpers.h"
+#include "CollisionQueryParams.h"
+
+
+
 
 // Sets default values for this component's properties
 UKKWheelSC::UKKWheelSC()
@@ -34,7 +39,47 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 		UStaticMeshComponent* parentVehicleMesh = Cast<UStaticMeshComponent>(GetAttachParent());
 		if (parentVehicleMesh->IsValidLowLevel())
 		{
-			parentVehicleMesh->AddForce(FVector(99999,99999,99999));
+			AKKBaseVehicle* parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
+			if (parentVehicleClass->IsValidLowLevel())
+			{
+				HoverForceNewton = parentVehicleClass->HoverForceNewton;
+			}
+			
+			
+
+			FCollisionQueryParams tracingParams;
+			tracingParams.bTraceComplex = false;
+			tracingParams.bReturnPhysicalMaterial = true;
+			FHitResult outHit;
+
+			float mass = parentVehicleMesh->GetMass();
+			FVector worldLocation = GetComponentLocation();
+			FVector localLocation = RelativeLocation;
+			FVector upVector = GetUpVector();
+
+			bool isHit = GetWorld()->LineTraceSingleByChannel(outHit, worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, ECC_GameTraceChannel2, tracingParams);
+
+			FVector hitVector = outHit.Location - worldLocation;
+			float hitVectorLength = hitVector.Size();
+			//float actualCompressed = SuspensionLength - hitVectorLength;
+
+			if (isHit)
+			{
+				float actualCompressed = SuspensionLength - outHit.Distance;
+				float forceRatio = actualCompressed / SuspensionLength;
+				float finalDirection = FMath::Abs(FVector::DotProduct(hitVector, upVector));
+				//parentVehicleMesh->AddForceAtLocationLocal(upVector*mass*98*ForceNewton*forceRatio, localLocation);
+				parentVehicleMesh->AddForceAtLocationLocal(upVector*mass * 98 * HoverForceNewton*forceRatio, localLocation);
+				DrawDebugLine(GetWorld(), worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, FColor::Green, false, 0.001, 0, 2);
+			}
+			else
+			{
+				DrawDebugLine(GetWorld(), worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, FColor::Red, false, 0.001, 0, 2);
+			}
+
+			
+
+			
 		}
 	}
 }

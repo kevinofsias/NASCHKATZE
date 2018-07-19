@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+
+#include "KKBaseVehicle.h"
+
 #include "KKWheelSC.generated.h"
 
 
@@ -29,6 +32,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		FString WheelName = "Wheel Name";
 
-	bool bIsTurnOn = true;
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
+		float SuspensionLength = 50;
+
+	//UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
+		float HoverForceNewton = 0;
+
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
+		bool bIsTurnOn = true;
 	
 };

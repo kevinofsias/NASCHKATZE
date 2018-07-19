@@ -50,7 +50,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		UStaticMeshComponent* MainMesh;
 
-	//UPROPERTY(VisibleDefaultsOnly, Category = "KKSetup")
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		float MainMeshLinearDamping = 0;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		float MainMeshAngularDamping = 0;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		float HoverForceNewton = 20;
+
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
 		TArray<FWheelStruct> WheelsArray;
 };
