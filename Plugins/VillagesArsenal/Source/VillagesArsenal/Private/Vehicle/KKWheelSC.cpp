@@ -15,7 +15,14 @@ UKKWheelSC::UKKWheelSC()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	//Cache Wheel Setting
+	AKKBaseVehicle* parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
+	if (parentVehicleClass->IsValidLowLevel())
+	{
+		HoverForceNewton = parentVehicleClass->HoverForceNewton;
+		BaseWheelFrictionCoeff = parentVehicleClass->BaseWheelFrictionCoeff;
+
+	}
 }
 
 
@@ -39,11 +46,8 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 		UStaticMeshComponent* parentVehicleMesh = Cast<UStaticMeshComponent>(GetAttachParent());
 		if (parentVehicleMesh->IsValidLowLevel())
 		{
-			AKKBaseVehicle* parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
-			if (parentVehicleClass->IsValidLowLevel())
-			{
-				HoverForceNewton = parentVehicleClass->HoverForceNewton;
-			}
+			
+			
 			
 			
 
@@ -87,5 +91,10 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 void UKKWheelSC::TurnOn(bool isToTurnOn)
 {
 	bIsTurnOn = isToTurnOn;
+}
+
+void UKKWheelSC::applyFrictions()
+{
+	FVector velocity = ComponentVelocity;
 }
 

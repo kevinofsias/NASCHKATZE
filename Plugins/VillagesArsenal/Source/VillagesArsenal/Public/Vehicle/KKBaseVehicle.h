@@ -5,10 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 
-#include "KKWheelSC.h"
-
 #include "KKBaseVehicle.generated.h"
 
+class UKKWheelSC;
 
 USTRUCT(BlueprintType)
 struct FWheelStruct
@@ -16,7 +15,7 @@ struct FWheelStruct
 	GENERATED_USTRUCT_BODY()
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
 		FString WheelName;
-
+		
 	UKKWheelSC* WheelRef;
 };
 
@@ -57,8 +56,13 @@ public:
 		float MainMeshAngularDamping = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
-		float HoverForceNewton = 20;
+		float HoverForceNewton = 0;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		float BaseWheelFrictionCoeff = 1;
 
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
 		TArray<FWheelStruct> WheelsArray;
+
+	int32 WheelCount = 0;
 };

@@ -11,6 +11,10 @@ AKKBaseVehicle::AKKBaseVehicle()
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	TArray<UKKWheelSC*> wheelArrayRef;
+	this->GetComponents<UKKWheelSC>(wheelArrayRef);
+	WheelCount = wheelArrayRef.Num();
+
 	MainMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MainMesh"));
 	RootComponent = MainMesh;
 	MainMesh->SetSimulatePhysics(true);

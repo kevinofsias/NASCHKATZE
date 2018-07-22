@@ -35,10 +35,17 @@ public:
 	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float SuspensionLength = 50;
 
-	//UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
+	
 		float HoverForceNewton = 0;
+		float BaseWheelFrictionCoeff = 1;
 
 	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		bool bIsTurnOn = true;
+
+private:
+
+	int32 WheelCount = 0;
+
+	void applyFrictions();
 	
 };
