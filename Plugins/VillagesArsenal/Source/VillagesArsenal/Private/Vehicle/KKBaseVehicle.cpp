@@ -13,13 +13,10 @@ AKKBaseVehicle::AKKBaseVehicle()
 
 	TArray<UKKWheelSC*> wheelArrayRef;
 	this->GetComponents<UKKWheelSC>(wheelArrayRef);
-	WheelCount = wheelArrayRef.Num();
 
 	MainMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MainMesh"));
 	RootComponent = MainMesh;
-	MainMesh->SetSimulatePhysics(true);
-	MainMesh->SetLinearDamping(MainMeshLinearDamping);
-	MainMesh->SetAngularDamping(MainMeshAngularDamping);
+	
 
 }
 
@@ -28,12 +25,35 @@ void AKKBaseVehicle::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//init MainMesh's physics siulation
+	MainMesh->SetSimulatePhysics(true);
+	MainMesh->SetLinearDamping(MainMeshLinearDamping);
+	MainMesh->SetAngularDamping(MainMeshAngularDamping);
+
+
+	// Gather Wheels Informations
+	WheelsArray.Empty();
+	TArray<UKKWheelSC*> wheelArrayRef;
+	this->GetComponents<UKKWheelSC>(wheelArrayRef);
+	for (UKKWheelSC* wheel : wheelArrayRef)
+	{
+		if (wheel->IsValidLowLevel())
+		{
+			FWheelStruct wheelStruct;
+			wheelStruct.WheelName = wheel->WheelName;
+			wheelStruct.WheelRef = wheel;
+			WheelsArray.Add(wheelStruct);
+		}
+	}
+
 }
 
 // Called every frame
 void AKKBaseVehicle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	ApplyFrictions(DeltaTime);
 
 }
 
@@ -48,7 +68,8 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-
+	// Left here for demonstration
+	/*
 	if (PropertyChangedEvent.Property->IsValidLowLevel())
 	{
 		if (PropertyChangedEvent.Property->GetName() == "ForceUpdate")
@@ -70,7 +91,7 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 			}
 		}
 
-		/*
+		
 		if (PropertyChangedEvent.Property->GetName() == "MainMeshLinearDamping")
 		{
 			MainMesh->SetLinearDamping(MainMeshLinearDamping);
@@ -80,10 +101,31 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 		{
 			MainMesh->SetAngularDamping(MainMeshAngularDamping);
 		}
-		*/
+		
 
 	}
+	*/
 
+}
 
+void AKKBaseVehicle::ApplyFrictions(float DeltaTime)
+{
+	if (WheelsArray.Num() != 0)
+	{
+		//counting wheels those are actually touch the ground
+		WheelsOnGroundCount = 0;//clear
+		for (FWheelStruct wheel : WheelsArray)
+		{
+			if (wheel.WheelRef->bIsTurnOn && wheel.WheelRef->bIsTouchingGround)
+			{
+				WheelsOnGroundCount = WheelsOnGroundCount + 1;
+			}
+		}
+		float frictionRatio = WheelsOnGroundCount / WheelsArray.Num();
+		//apply lateral friction
+		FVector lateralVelocity = GetVelocity().ProjectOnTo(GetActorRightVector());
+		FVector lateralFriction = ((MainMesh->GetMass()) / DeltaTime) * frictionRatio * (-lateralVelocity);
+		MainMesh->AddForce(lateralFriction);
+	}
 }
 

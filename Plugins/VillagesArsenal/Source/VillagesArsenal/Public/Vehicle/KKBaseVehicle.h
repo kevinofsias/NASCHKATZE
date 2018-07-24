@@ -41,10 +41,7 @@ public:
 
 	void PostEditChangeProperty(FPropertyChangedEvent &PropertyChangedEvent) override;
 
-#if WITH_EDITOR
-	UPROPERTY(EditDefaultsOnly, Category = "KKSwitch")
-		bool ForceUpdate;
-#endif
+
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		UStaticMeshComponent* MainMesh;
@@ -64,5 +61,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
 		TArray<FWheelStruct> WheelsArray;
 
-	int32 WheelCount = 0;
+	int32 WheelsOnGroundCount = 0;
+
+private :
+
+	void ApplyFrictions(float DeltaTime);
 };

@@ -19,9 +19,7 @@ UKKWheelSC::UKKWheelSC()
 	AKKBaseVehicle* parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
 	if (parentVehicleClass->IsValidLowLevel())
 	{
-		HoverForceNewton = parentVehicleClass->HoverForceNewton;
-		BaseWheelFrictionCoeff = parentVehicleClass->BaseWheelFrictionCoeff;
-
+		ParentHoverForceNewton = parentVehicleClass->HoverForceNewton;
 	}
 }
 
@@ -46,11 +44,7 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 		UStaticMeshComponent* parentVehicleMesh = Cast<UStaticMeshComponent>(GetAttachParent());
 		if (parentVehicleMesh->IsValidLowLevel())
 		{
-			
-			
-			
-			
-
+			//Prepare Tracing
 			FCollisionQueryParams tracingParams;
 			tracingParams.bTraceComplex = false;
 			tracingParams.bReturnPhysicalMaterial = true;
@@ -61,19 +55,19 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 			FVector localLocation = RelativeLocation;
 			FVector upVector = GetUpVector();
 
-			bool isHit = GetWorld()->LineTraceSingleByChannel(outHit, worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, ECC_GameTraceChannel2, tracingParams);
+			//Tracing
+			bool isHit = GetWorld()->LineTraceSingleByChannel(outHit, worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, DrivableChannel, tracingParams);
 
 			FVector hitVector = outHit.Location - worldLocation;
 			float hitVectorLength = hitVector.Size();
-			//float actualCompressed = SuspensionLength - hitVectorLength;
 
 			if (isHit)
 			{
+				bIsTouchingGround = true;
 				float actualCompressed = SuspensionLength - outHit.Distance;
 				float forceRatio = actualCompressed / SuspensionLength;
 				float finalDirection = FMath::Abs(FVector::DotProduct(hitVector, upVector));
-				//parentVehicleMesh->AddForceAtLocationLocal(upVector*mass*98*ForceNewton*forceRatio, localLocation);
-				parentVehicleMesh->AddForceAtLocationLocal(upVector*mass * 98 * HoverForceNewton*forceRatio, localLocation);
+				parentVehicleMesh->AddForceAtLocationLocal(upVector*mass * 100 * ParentHoverForceNewton * forceRatio, localLocation);
 				DrawDebugLine(GetWorld(), worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, FColor::Green, false, 0.001, 0, 2);
 			}
 			else
@@ -88,13 +82,9 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	}
 }
 
-void UKKWheelSC::TurnOn(bool isToTurnOn)
+void UKKWheelSC::TurnOn(bool bIsToTurnOn)
 {
-	bIsTurnOn = isToTurnOn;
-}
-
-void UKKWheelSC::applyFrictions()
-{
-	FVector velocity = ComponentVelocity;
+	bIsTurnOn = bIsToTurnOn;
+	bIsTouchingGround = !bIsToTurnOn;
 }
 

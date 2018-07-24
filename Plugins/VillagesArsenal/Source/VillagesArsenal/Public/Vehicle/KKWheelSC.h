@@ -27,7 +27,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void TurnOn(bool isToTurnOn);
+	void TurnOn(bool bIsToTurnOn);
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		FString WheelName = "Wheel Name";
@@ -35,17 +35,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float SuspensionLength = 50;
 
-	
-		float HoverForceNewton = 0;
-		float BaseWheelFrictionCoeff = 1;
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		TEnumAsByte<ECollisionChannel> DrivableChannel = ECC_WorldStatic;
+
+	float ParentHoverForceNewton = 0;
+
+	bool bIsTouchingGround = false;
+		
 
 	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		bool bIsTurnOn = true;
 
-private:
-
-	int32 WheelCount = 0;
-
-	void applyFrictions();
-	
 };
