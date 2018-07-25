@@ -108,6 +108,11 @@ void AKKBaseVehicle::PostEditChangeProperty(FPropertyChangedEvent & PropertyChan
 
 }
 
+UStaticMeshComponent * AKKBaseVehicle::GetMainMesh()
+{
+	return MainMesh;
+}
+
 void AKKBaseVehicle::ApplyFrictions(float DeltaTime)
 {
 	if (WheelsArray.Num() != 0)

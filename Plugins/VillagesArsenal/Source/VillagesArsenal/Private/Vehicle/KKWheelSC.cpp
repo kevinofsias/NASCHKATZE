@@ -15,12 +15,7 @@ UKKWheelSC::UKKWheelSC()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	//Cache Wheel Setting
-	AKKBaseVehicle* parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
-	if (parentVehicleClass->IsValidLowLevel())
-	{
-		ParentHoverForceNewton = parentVehicleClass->HoverForceNewton;
-	}
+	
 }
 
 
@@ -29,8 +24,16 @@ void UKKWheelSC::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	//Cache Wheel Setting
+	parentVehicleClass = Cast<AKKBaseVehicle>(GetOwner());
+	if (parentVehicleClass->IsValidLowLevel())
+	{
+		ParentHoverForceNewton = parentVehicleClass->HoverForceNewton;
+		WheelDrivableChannel = parentVehicleClass->DrivableChannel;
+		parentVehicleMesh = parentVehicleClass->GetMainMesh();
+		//UStaticMeshComponent* parentVehicleMesh = Cast<UStaticMeshComponent>(GetAttachParent());
+	}
+
 }
 
 
@@ -41,7 +44,9 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 	if (bIsTurnOn)
 	{
-		UStaticMeshComponent* parentVehicleMesh = Cast<UStaticMeshComponent>(GetAttachParent());
+		/* Generate force enough to hover vehicle when all wheel actived  */
+
+
 		if (parentVehicleMesh->IsValidLowLevel())
 		{
 			//Prepare Tracing
@@ -55,7 +60,7 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 			FVector upVector = GetUpVector();
 
 			//Tracing
-			bool isHit = GetWorld()->LineTraceSingleByChannel(outHit, worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, DrivableChannel, tracingParams);
+			bool isHit = GetWorld()->LineTraceSingleByChannel(outHit, worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, WheelDrivableChannel, tracingParams);
 
 			FVector hitVector = outHit.Location - worldLocation;
 			float hitVectorLength = hitVector.Size();
@@ -71,12 +76,13 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 			}
 			else
 			{
+				bIsTouchingGround = false;
 				DrawDebugLine(GetWorld(), worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, FColor::Red, false, 0.001, 0, 2);
 			}
 
-			
 
-			
+
+
 		}
 	}
 }

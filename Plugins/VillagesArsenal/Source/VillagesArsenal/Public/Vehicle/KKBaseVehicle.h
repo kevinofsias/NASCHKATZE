@@ -44,7 +44,7 @@ public:
 
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
-		UStaticMeshComponent* MainMesh;
+		class UStaticMeshComponent* MainMesh;
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		float MainMeshLinearDamping = 0;
@@ -56,12 +56,17 @@ public:
 		float HoverForceNewton = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+		TEnumAsByte<ECollisionChannel> DrivableChannel = ECC_WorldStatic;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
 		float BaseWheelFrictionCoeff = 1;
 
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")
 		TArray<FWheelStruct> WheelsArray;
 
 	int32 WheelsOnGroundCount = 0;
+
+	UStaticMeshComponent* GetMainMesh();
 
 private :
 

@@ -35,8 +35,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float SuspensionLength = 50;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
-		TEnumAsByte<ECollisionChannel> DrivableChannel = ECC_WorldStatic;
+	TEnumAsByte<ECollisionChannel> WheelDrivableChannel = ECC_WorldStatic;
+
+	AKKBaseVehicle* parentVehicleClass = 0;
+
+	UStaticMeshComponent* parentVehicleMesh = 0;
 
 	float ParentHoverForceNewton = 0;
 
