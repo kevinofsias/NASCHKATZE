@@ -232,6 +232,14 @@
 			"Name": "GPortalConnector",
 			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/198d771e1280430b9df9c470c6cc1ef7"
+		},
+		{
+			"Name": "AppleARKit",
+			"Enabled": false
+		},
+		{
+			"Name": "PhysXVehicles",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
