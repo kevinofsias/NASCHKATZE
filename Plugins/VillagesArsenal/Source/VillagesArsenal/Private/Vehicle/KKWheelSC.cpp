@@ -52,7 +52,6 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 			float mass = parentVehicleMesh->GetMass();
 			FVector worldLocation = GetComponentLocation();
-			FVector localLocation = RelativeLocation;
 			FVector upVector = GetUpVector();
 
 			//Tracing
@@ -66,8 +65,8 @@ void UKKWheelSC::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 				bIsTouchingGround = true;
 				float actualCompressed = SuspensionLength - outHit.Distance;
 				float forceRatio = actualCompressed / SuspensionLength;
-				float finalDirection = FMath::Abs(FVector::DotProduct(hitVector, upVector));
-				parentVehicleMesh->AddForceAtLocationLocal(upVector*mass * 100 * ParentHoverForceNewton * forceRatio, localLocation);
+				//add force
+				parentVehicleMesh->AddForceAtLocation(outHit.ImpactNormal * mass * 100 * ParentHoverForceNewton * forceRatio, worldLocation);
 				DrawDebugLine(GetWorld(), worldLocation, worldLocation + (-1 * upVector)*SuspensionLength, FColor::Green, false, 0.001, 0, 2);
 			}
 			else
