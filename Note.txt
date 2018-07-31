@@ -3,3 +3,7 @@
 		 "LocalPath" "VillagesGoldEdition\\Content\\VillagesServerData\\ServerLogin.txt"
 		"Attributes" "userconfig" // this file will be modified during runtime 
 	}
+
+
+BaseEditorPerProjectUserSetting.ini in Engine
++Node=(Class=KismetSystemLibrary:PrintString Key=P Shift=false Ctrl=false Alt=false)
