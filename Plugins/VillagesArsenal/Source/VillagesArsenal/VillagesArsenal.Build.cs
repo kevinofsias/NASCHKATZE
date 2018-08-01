@@ -8,17 +8,17 @@ public class VillagesArsenal : ModuleRules
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
+        
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"VillagesArsenal/Public"
 				// ... add public include paths required here ...
 			}
 			);
 				
 		
+        
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"VillagesArsenal/Private",
 				// ... add other private include paths required here ...
 			}
 			);
@@ -28,6 +28,7 @@ public class VillagesArsenal : ModuleRules
 			new string[]
 			{
 				"Core",
+                "UMG"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -36,11 +37,13 @@ public class VillagesArsenal : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
+                "Core",
+                "CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
                 "UMG",
+                "MoviePlayer"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

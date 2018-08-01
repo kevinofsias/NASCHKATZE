@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{576E34B9-46C8-D3E1-03DE-3F9615A65D80}",
+	"EngineAssociation": "{808D88B4-4892-715D-9C23-13BE975ED86C}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -15,17 +15,40 @@
 	],
 	"Plugins": [
 		{
-			"Name": "UWorks",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/382ff2e7db2f483c82bf7246530d100a"
-		},
-		{
 			"Name": "OnlineSubsystemGooglePlay",
-			"Enabled": false
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Android"
+			]
 		},
 		{
 			"Name": "AndroidPermission",
 			"Enabled": false
+		},
+		{
+			"Name": "MagicLeapEmulator",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Lumin"
+			]
+		},
+		{
+			"Name": "MagicLeapMedia",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Lumin"
+			]
+		},
+		{
+			"Name": "MagicLeap",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Lumin"
+			]
+		},
+		{
+			"Name": "BlueprintMaterialTextureNodes",
+			"Enabled": true
 		},
 		{
 			"Name": "LocationServicesBPLibrary",
@@ -48,10 +71,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "FacialAnimation",
-			"Enabled": false
-		},
-		{
 			"Name": "MatineeToLevelSequence",
 			"Enabled": false
 		},
@@ -60,8 +79,16 @@
 			"Enabled": false
 		},
 		{
-			"Name": "UObjectPlugin",
+			"Name": "AppleVision",
 			"Enabled": false
+		},
+		{
+			"Name": "AppleImageUtils",
+			"Enabled": false
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
 		},
 		{
 			"Name": "ArchVisCharacter",
@@ -69,6 +96,10 @@
 		},
 		{
 			"Name": "AlembicImporter",
+			"Enabled": false
+		},
+		{
+			"Name": "GeometryCache",
 			"Enabled": false
 		},
 		{
@@ -80,11 +111,23 @@
 			"Enabled": false
 		},
 		{
+			"Name": "ImgMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "LinearTimecode",
+			"Enabled": false
+		},
+		{
 			"Name": "WmfMedia",
 			"Enabled": false
 		},
 		{
 			"Name": "HTML5Networking",
+			"Enabled": false
+		},
+		{
+			"Name": "MacGraphicsSwitching",
 			"Enabled": false
 		},
 		{
@@ -100,10 +143,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "AppleMoviePlayer",
-			"Enabled": false
-		},
-		{
 			"Name": "WindowsMoviePlayer",
 			"Enabled": false
 		},
@@ -112,7 +151,23 @@
 			"Enabled": false
 		},
 		{
-			"Name": "CodeLiteSourceCodeAccess",
+			"Name": "OnlineSubsystemIOS",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"IOS",
+				"TVOS"
+			]
+		},
+		{
+			"Name": "CryptoKeys",
+			"Enabled": false
+		},
+		{
+			"Name": "PhysXVehicles",
+			"Enabled": false
+		},
+		{
+			"Name": "CLionSourceCodeAccess",
 			"Enabled": false
 		},
 		{
@@ -124,11 +179,11 @@
 			"Enabled": false
 		},
 		{
-			"Name": "XCodeSourceCodeAccess",
-			"Enabled": false
+			"Name": "ReplicationGraph",
+			"Enabled": true
 		},
 		{
-			"Name": "PerforceSourceControl",
+			"Name": "XCodeSourceCodeAccess",
 			"Enabled": false
 		},
 		{
@@ -136,16 +191,15 @@
 			"Enabled": false
 		},
 		{
-			"Name": "RamaSaveSystem",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/6c81d0b2b68f445cb24616fa39a462c2"
-		},
-		{
-			"Name": "OnlineSubsystemIOS",
+			"Name": "PerforceSourceControl",
 			"Enabled": false
 		},
 		{
-			"Name": "OculusVR",
+			"Name": "GitSourceControl",
+			"Enabled": false
+		},
+		{
+			"Name": "DatasmithContent",
 			"Enabled": false
 		},
 		{
@@ -153,52 +207,9 @@
 			"Enabled": false
 		},
 		{
-			"Name": "LowEntryExtStdLib",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/846c2ad08f164f45b0335ecebf85361e"
-		},
-		{
-			"Name": "SteamAudio",
-			"Enabled": true
-		},
-		{
 			"Name": "EasyBallistics",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/bbecde0f66914263b57fd2af5a0c7ffe"
-		},
-		{
-			"Name": "VictoryBPLibrary",
-			"Enabled": true,
-			"MarketplaceURL": "http://www.ue4code.com"
-		},
-		{
-			"Name": "LowEntryFileManager",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/58edabbac7514311a4670c5d47a6fae6"
-		},
-		{
-			"Name": "LoadingScreen",
-			"Enabled": true
-		},
-		{
-			"Name": "PivotTool",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/a220ab040cb844beb355b0f159eabefa"
-		},
-		{
-			"Name": "ImageResizUEr",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/670be04026664663875aadd4dea45b9d"
-		},
-		{
-			"Name": "GameSparks",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/0bb7b72905c64c7d86c4c430a42bc9c1"
-		},
-		{
-			"Name": "ConfigBPPlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/72cafa6deb374cf48f12c8ef45ffa129"
 		},
 		{
 			"Name": "JSONParser",
@@ -206,40 +217,29 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/8eda577c5b594d6b990f91b8dec8a014"
 		},
 		{
-			"Name": "PlayFab",
-			"Enabled": false
-		},
-		{
-			"Name": "StomtPlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/7980672d57664bb5a567ff39f5106af6"
-		},
-		{
 			"Name": "WebCommunication",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3b04f3c4af5445959cee4448846b55a0"
 		},
 		{
-			"Name": "USQLite",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/4edcf9e3388546cc96e674365f36cdc1"
+			"Name": "VictoryBPLibrary",
+			"Enabled": true,
+			"MarketplaceURL": "http://www.ue4code.com"
 		},
 		{
-			"Name": "GitSourceControl",
-			"Enabled": false
+			"Name": "ConfigBPPlugin",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/72cafa6deb374cf48f12c8ef45ffa129"
 		},
 		{
-			"Name": "GPortalConnector",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/198d771e1280430b9df9c470c6cc1ef7"
+			"Name": "PivotTool",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/a220ab040cb844beb355b0f159eabefa"
 		},
 		{
-			"Name": "AppleARKit",
-			"Enabled": false
-		},
-		{
-			"Name": "PhysXVehicles",
-			"Enabled": false
+			"Name": "RSSFeederPlugin",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/0cdacfadade5413ba59a60f46e2cb24e"
 		}
 	],
 	"TargetPlatforms": [
