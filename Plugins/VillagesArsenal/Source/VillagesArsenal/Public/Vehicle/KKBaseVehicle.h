@@ -43,22 +43,25 @@ public:
 
 
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		class UStaticMeshComponent* MainMesh;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float MainMeshLinearDamping = 0;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float MainMeshAngularDamping = 0;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
+		float LateralFrictionFactor = 1;
+
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float HoverForceNewton = 0;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		TEnumAsByte<ECollisionChannel> DrivableChannel = ECC_WorldStatic;
 
-	UPROPERTY(EditDefaultsOnly, Category = "KKVehicleSetup")
+	UPROPERTY(EditAnywhere, Category = "KKVehicleSetup")
 		float BaseWheelFrictionCoeff = 1;
 
 	UPROPERTY(BlueprintReadOnly, Category = "KKVehicleSetup")

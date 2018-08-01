@@ -129,7 +129,7 @@ void AKKBaseVehicle::ApplyFrictions(float DeltaTime)
 		float frictionRatio = WheelsOnGroundCount / WheelsArray.Num();
 		//apply lateral friction
 		FVector lateralVelocity = GetVelocity().ProjectOnTo(MainMesh->GetRightVector());
-		FVector lateralFriction = ((MainMesh->GetMass()) / DeltaTime) * frictionRatio * (-lateralVelocity);
+		FVector lateralFriction = ((MainMesh->GetMass()) / DeltaTime) * frictionRatio * LateralFrictionFactor * (-lateralVelocity);
 		MainMesh->AddForce(lateralFriction);
 	}
 }
