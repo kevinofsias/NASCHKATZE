@@ -20,9 +20,7 @@ public class VillagesGoldEdition : ModuleRules
             "PhysXVehicleLib",
             "GameplayTags",
             "UMG",
-            "Slate",
-            "GameSparks",
-            "StomtPlugin"
+            "Slate"
         });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
